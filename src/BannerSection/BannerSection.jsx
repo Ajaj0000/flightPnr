@@ -36,7 +36,7 @@ function BannerSection() {
     const [airPorts, setAirPorts] = useState([]);
     const [searchAirPort, setSearchAirport] = useState([]);
     const [getairPortToInput, setGetAirPortToInput] = useState();
-    const inputRef = useRef();
+    const inputRef = useRef(null);
 
     const [show, setShow] = useState(false);
     const handelshow = () => {
@@ -67,6 +67,7 @@ function BannerSection() {
         setSearchAirport(getValue ? result : airPorts);
     };
     console.log('airports', airPorts, 'searchairport', searchAirPort);
+
     // const resultentAirport = (e) => {
     //     const getvalue = e.target.value;
     //     const result = airPorts.filter((itm) => itm.City.toLowerCase().includes(getvalue) || itm.AirportName.toLowerCase().includes(getvalue));
@@ -81,7 +82,7 @@ function BannerSection() {
 
 
 
-    {/*arrival*/ }
+    //arrival
 
     const [arrivalAirPort, setArrivalAirPort] = useState([]);
     const [findArrvialAirport, setfindArrivalAirport] = useState([])
@@ -98,6 +99,7 @@ function BannerSection() {
         FetchAirport();
         setfindArrivalAirport()
     }, []);
+
     const handelArrivalData = (e) => {
         const getvalue = e.target.value.toLowerCase();
         setInputArrival(getvalue);
@@ -147,12 +149,12 @@ function BannerSection() {
 
                             <div className="searchbox_content">
                                 <div className="input_box inputfild">
-                                    <input type="text" ref={inputRef} placeholder="Enter Departure Name" onChange={handleDepartureInput} value={getairPortToInput} onFocus={handelshow} />{/* onChange={GetAirPort} value={depDrtureSearchResult}}*/}
+                                    <input type="text" placeholder="Enter Departure Name" onChange={handleDepartureInput} value={getairPortToInput} onFocus={handelshow} onMouseDown={handelblur}/>{/* onChange={GetAirPort} value={depDrtureSearchResult}}*/}
                                     <div className="transfer_data"><i className="fa-solid fa-right-left"></i></div>
 
                                     {
                                         show && (
-                                            <div className="list">
+                                            <div className="list" ref={inputRef} style={{}}>
                                                 {
                                                     searchAirPort &&
                                                     searchAirPort.map((itm) => {
