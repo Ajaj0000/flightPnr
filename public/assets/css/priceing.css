@@ -1,0 +1,559 @@
+img {
+  max-width: 100%;
+}
+
+.breadcrumb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #0b1827;
+  padding: 15px;
+  padding-left: 0;
+}
+.breadcrumb a {
+  color: #0b1827;
+  font-size: 16px;
+}
+.breadcrumb li {
+  position: relative;
+}
+.breadcrumb li::after {
+  content: "/";
+  display: inline-block;
+  color: #0A243F;
+  font-size: 15px;
+  padding: 0 12px;
+}
+.breadcrumb li:last-child::after {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .breadcrumb {
+    padding: 15px;
+  }
+}
+.pricing .header-banner {
+  background-position: top;
+}
+.pricing h1 {
+  font-size: 30px;
+  font-weight: 800;
+  text-transform: inherit;
+}
+
+.pricing-banner {
+  text-align: center;
+  background: #FEF7F7;
+  padding: 20px;
+}
+.pricing-banner .heading {
+  font-size: 30px;
+  color: #E84545;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.pricing-banner h1 {
+  font-size: 25px;
+  color: #E84545;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.pricing-banner p {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 8px;
+}
+
+.flexible-pricing {
+  padding: 30px 0;
+  color: #0b1827;
+  text-align: center;
+}
+.flexible-pricing .heading {
+  font-size: 30px;
+  font-weight: 800;
+}
+.flexible-pricing .heading span {
+  display: block;
+  font-size: 22px;
+}
+
+.country-box {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  padding: 20px 0;
+}
+.country-box:after {
+  content: "";
+  position: absolute;
+  right: 13px;
+  top: 32px;
+  background: url(../images/common/sprite.svg) no-repeat -392px -29px;
+  height: 11px;
+  width: 18px;
+}
+.country-box label {
+  display: inline-block;
+  font-size: 20px;
+  color: #E84545;
+  font-weight: 500;
+  vertical-align: middle;
+}
+.country-box select {
+  border: 1px solid #DDD;
+  padding: 5px 10px;
+  margin-left: 15px;
+  vertical-align: middle;
+  width: 110px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0b1827;
+}
+
+.pricing-box {
+  text-align: left;
+}
+.pricing-box .inner-box {
+  padding: 30px 0 20px;
+  border: 1px solid #DDD;
+  position: relative;
+  margin: 40px 0 0;
+}
+.pricing-box .inner-box.active {
+  border: 1px solid #E84545;
+  margin: 20px 0 0;
+}
+.pricing-box .inner-box:hover {
+  border-color: #E84545;
+}
+.pricing-box .inner-box:hover .singup-btn {
+  background: #E84545;
+  color: #fff;
+  border-color: #E84545;
+}
+.pricing-box .box {
+  padding: 0 20px 10px;
+  border-bottom: 1px solid #DDD;
+}
+.pricing-box p {
+  font-size: 14px;
+  font-weight: 300;
+  padding: 10px 0;
+}
+.pricing-box ul {
+  padding: 20px;
+}
+.pricing-box ul li {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+.pricing-box ul li::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 14px;
+  background: url(../images/common/sprite.svg) no-repeat -449px -4px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.text_bottom {
+  text-align: center;
+}
+.text_bottom label {
+  display: block;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 25px;
+}
+.text_bottom strong {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.title-tag {
+  position: absolute;
+  left: 20px;
+  top: -18px;
+  display: inline-block;
+  background: #236bf0;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 5px 20px;
+  font-size: 16px;
+  font-weight: 300;
+}
+.title-tag.active {
+  background: #E84545;
+  color: #fff;
+}
+
+.price-title {
+  text-align: right;
+  color: #0b1827;
+  font-size: 30px;
+  font-weight: 800;
+}
+.price-title strong {
+  text-decoration: line-through;
+  color: #E84545;
+}
+.price-title small {
+  display: inline-block;
+  font-size: 32px;
+  vertical-align: super;
+  font-weight: 800;
+  margin-left: 5px;
+}
+.price-title span {
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.order-price {
+  background: #F5F5F5;
+  display: inline-block;
+  padding: 5px 30px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.singup-btn {
+  display: block;
+  text-align: center;
+  border: 1px solid #DDD;
+  color: #0b1827;
+  padding: 7px 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 20px;
+}
+.singup-btn.active {
+  background: #E84545;
+  color: #fff;
+  border-color: #E84545;
+}
+
+.travel-order-text {
+  background: #236bf0;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+}
+.travel-order-text a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.plan-comparison {
+  background: #FEF7F7;
+  padding: 30px 0;
+  margin: 30px 0 0;
+  color: #0b1827;
+}
+.plan-comparison .title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #E84545;
+  text-align: center;
+}
+.plan-comparison .heading {
+  font-size: 25px;
+  text-align: center;
+  font-weight: 800;
+  padding: 10px 0 30px;
+}
+.plan-comparison ul {
+  text-align: center;
+}
+.plan-comparison ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+.plan-comparison ul li:nth-child(even) {
+  background: #fff;
+}
+.plan-comparison ul li p:first-child {
+  text-align: left;
+}
+.plan-comparison ul figure {
+  width: 33%;
+}
+.plan-comparison ul img {
+  width: 20px;
+}
+.plan-comparison ul p {
+  width: 33%;
+  font-size: 13px;
+}
+.plan-comparison .blankdiv {
+  display: none;
+}
+.plan-comparison .button {
+  width: 48%;
+  padding: 10px 0 0;
+}
+.plan-comparison .button a {
+  display: block;
+  text-align: center;
+  color: #fff;
+  background: #E84545;
+  padding: 7px;
+}
+.plan-comparison .heading-inner {
+  font-size: 16px;
+  font-weight: 500;
+  color: #E84545;
+  padding: 15px 0;
+}
+
+.highlights-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.highlights-grid .inner {
+  text-align: center;
+  width: 32%;
+  color: #0b1827;
+  border-bottom: 1px solid #DDD;
+  padding: 0 0 10px;
+}
+.highlights-grid .inner:first-child {
+  text-align: left;
+}
+.highlights-grid p {
+  font-size: 15px;
+  font-weight: 600;
+}
+.highlights-grid .in {
+  background: #236bf0;
+  padding: 5px 15px;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.highlights-grid .in.active {
+  background: #E84545;
+}
+.highlights-grid .text {
+  display: none;
+  color: #0b1827;
+  font-size: 30px;
+  font-weight: 800;
+}
+.highlights-grid .text span {
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.travel-toolbox {
+  padding: 30px 0;
+  color: #0b1827;
+}
+.travel-toolbox .top {
+  color: #E84545;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 500;
+}
+.travel-toolbox .heading {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+}
+.travel-toolbox ul li {
+  -webkit-box-shadow: 0 1px 6px -2px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 1px 6px -2px rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  background: #fff;
+  margin: 30px 0 0;
+}
+.travel-toolbox .title {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px 0 4px;
+  text-transform: uppercase;
+}
+.travel-toolbox p {
+  font-size: 13px;
+}
+.travel-toolbox figure i {
+  display: inline-block;
+  background: url(../images/home/sprite.svg) no-repeat -70px -109px;
+  width: 37px;
+  height: 37px;
+}
+.travel-toolbox figure .baggage-icon {
+  background-position: -107px -109px;
+  width: 32px;
+}
+.travel-toolbox figure .cancel-icon {
+  background-position: -140px -109px;
+}
+.travel-toolbox figure .dashboard-icon {
+  background-position: -180px -109px;
+}
+.travel-toolbox figure .paid-icon {
+  background-position: -220px -104px;
+  height: 41px;
+}
+.travel-toolbox figure .right-icon {
+  background-position: -259px -99px;
+  width: 30px;
+}
+.travel-toolbox figure .setting-icon {
+  background-position: -292px -106px;
+}
+
+.started-box {
+  padding: 30px 0;
+  text-align: center;
+  background: #236bf0;
+  color: #fff;
+}
+.started-box p {
+  font-size: 18px;
+  font-weight: 500;
+}
+.started-box .heading {
+  font-size: 25px;
+  font-weight: 700;
+}
+.started-box a {
+  display: block;
+  background: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #236bf0;
+  padding: 10px;
+  margin: 10px 0 0;
+}
+.started-box a.active {
+  background: #E84545;
+  color: #fff;
+}
+
+@media (min-width: 767px) {
+  .pricing-banner h1 {
+    font-size: 30px;
+  }
+  .flexible-pricing .heading span {
+    font-size: 30px;
+  }
+  .pricing-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 40px 0 0;
+  }
+  .pricing-box .inner-box {
+    width: 30%;
+    margin: 0;
+  }
+  .pricing-box .inner-box.active {
+    margin: 0;
+  }
+  .pricing-box .inner-box:nth-child(2) {
+    margin: 0 20px;
+  }
+  .pricing-box .text_bottom {
+    margin-bottom: 72px;
+  }
+  .singup-btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+  }
+  .plan-comparison .heading {
+    font-size: 30px;
+    font-weight: 800;
+    padding: 0 0 50px;
+  }
+  .plan-comparison ul li p {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .plan-comparison figure i {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: url(../images/common/sprite.svg) no-repeat -351px -40px;
+  }
+  .plan-comparison .blankdiv {
+    display: inline-block;
+    width: 30%;
+  }
+  .plan-comparison .button {
+    width: 30%;
+  }
+  .highlights-grid .text {
+    display: inline-block;
+    line-height: 20px;
+    vertical-align: middle;
+  }
+  .highlights-grid p {
+    font-size: 20px;
+  }
+  .travel-toolbox {
+    padding: 40px 0;
+  }
+  .travel-toolbox .heading {
+    font-size: 30px;
+    font-weight: 800;
+  }
+  .travel-toolbox ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .travel-toolbox ul li {
+    width: 32%;
+    margin: 26px 0 0;
+  }
+  .started-box {
+    padding: 40px 0;
+  }
+  .started-box p {
+    font-size: 20px;
+  }
+  .started-box .heading {
+    font-size: 30px;
+    padding: 0 0 30px;
+  }
+  .started-box a {
+    display: inline-block;
+    padding: 10px 70px;
+    margin: 0 5px;
+  }
+}

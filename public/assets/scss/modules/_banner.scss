@@ -1,0 +1,32 @@
+//banner-section
+.banner-section{  background-size: cover; position: relative;
+    .container{margin-top: -306px; z-index: 9; position: relative;}
+    figure{line-height: 0; z-index: -1;
+      img{width: 100%;}
+    }
+}
+
+
+//banner_content
+.banner_content{
+  .heading{font-size:40px;  color: $white; padding-bottom: 50px; text-align: center;
+    b{font-size: 40px; font-weight: 600;}
+  }
+}
+
+
+@media(max-width:767px){
+
+  .banner-section{
+    figure{
+      img{height: 320px; object-fit: cover;}
+    }
+  }
+
+  .banner_content{
+    .heading{font-size: 25px; 
+      b{font-size: 25px;}
+    }
+  }
+
+}

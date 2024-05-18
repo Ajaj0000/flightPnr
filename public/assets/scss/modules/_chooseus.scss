@@ -1,0 +1,20 @@
+.chooseUs{margin-bottom: 50px;
+    .heading{font-size: 37px; text-align: center; font-weight: 600; color: $black; margin-bottom: 40px;}
+    ul{display: flex; justify-content: space-between;}
+    li{ width: 24%; border: 1px solid $gray; padding: 10px; display: flex; align-items: center; border-radius: 5px;}
+    .rightTxt{padding-left: 20px;}
+    .title{font-size: 15px; font-weight: 600; color: $black;}
+    span{color: $black; font-size: 12px;}
+    .active{background: $blue;
+        .title, span{color: #fff;}
+    }
+}
+
+
+@media (max-width:767px) {
+    .chooseUs{margin-bottom: 20px;
+        .heading{font-size: 25px; margin-bottom: 15px;}
+        ul{flex-wrap: wrap;}
+        li{width: 100%; margin-bottom: 15px;}
+    }
+}

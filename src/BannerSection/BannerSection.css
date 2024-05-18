@@ -1,0 +1,28 @@
+.input_box{
+    position: relative !important;
+}
+.input_box .list{
+    position: absolute;
+    max-height: 150px;
+    height: 150px;
+    overflow-y: scroll;
+    top: 40px;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    /* display: none; */
+}
+.input_box .list li{
+    list-style: none;
+    z-index: 1000;
+    padding: 5px;
+    position: relative;
+}
+.input_box .list li span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.direct_flight_row .search_flight{
+    z-index: -1;
+}

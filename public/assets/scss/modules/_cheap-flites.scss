@@ -1,0 +1,40 @@
+
+
+//cheap-flites
+
+.cheap-flites{margin-bottom: 60px;
+    .common-heading {
+        font-size: 25px;
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 26px;
+        font-weight: 700;
+      }
+    p{font-size:16px; text-align: center; margin-bottom:30px;}
+    
+    ul{display: flex; flex-wrap: wrap;width: 80%; margin: 0 auto;}
+    li{width: 25%;border-bottom: 1px solid $border; width: 30%; margin-right: 20px; font-size:16px; padding: 13px 0; position: relative;
+        &:nth-child(16n){border: none;}
+        &:nth-child(17n){border: none;}
+        &:nth-child(18n){border: none;}
+    }
+        
+        a{color: #666666;font-size:16px; display: block;
+            
+        &::after{content: ' '; background: url('../images/common/right-arrow.svg') no-repeat; height: 20px; width: 20px; position: absolute; right: 0;}
+       
+    }
+    
+}
+
+
+
+@media(max-width:767px){
+
+    .cheap-flites{
+        ul{width: 100%; 
+        
+            li{width: 100%;}
+        }
+    }
+}

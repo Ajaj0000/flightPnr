@@ -1,0 +1,81 @@
+//searchbox_content
+.searchbox_content{display: flex; justify-content: space-between; flex-wrap: wrap; 
+
+  .input_box{border:1px solid $border; border-radius: 5px;  padding: 7px 15px; position: relative;
+    &.inputfild{width:24%; 
+      &:nth-child(2){padding-left:25px;}
+    }
+    &.hotelfild{width: 22%;}
+    &.fullrow{width: 44%;}
+    &.inputdate{width: 13%; padding-left: 35px;
+      &::before{ position: absolute; left: 8px; top:10px; font-size:20px; content: "\f073"; font-family: "Font Awesome 5 Free"; font-weight:900; }
+    }
+    &.flighthotel{width: 11%;}
+    &.traveler{width: 10%;}
+
+    &.room_travelers{display: flex; width: 16%; justify-content: space-between;}
+  }
+  span{font-size:16px; color: $black; font-weight: 600; line-height: 17px; text-transform: capitalize; display: block;}
+  small{display: block; padding-top: 2px;}
+  input{width: 100%; color:#8d8b8b; font-size: 15px;
+    &::placeholder{ color: #8d8b8b; opacity: 100%;}
+  }
+} 
+
+
+//transfer_data
+.transfer_data{position:absolute; cursor: pointer; right:-25px; top:9px; background: $white; z-index: 9; height:40px; width:40px; line-height:40px; border-radius: 100px; text-align: center; border: 1px solid $border; display: inline-block; 
+   i{font-size: 16px; color: $orange;}
+}
+
+//room_select
+.room_select{width: 45%; border-right: 1px solid $border; cursor: pointer;}
+
+//travel_select
+.travel_select{width: 45%; cursor: pointer;}
+
+//search_button
+.search_button{width:12%; background: $orange; color: $white; font-size: 16px; font-weight: 500; text-transform: capitalize; border-radius: 5px;}
+
+
+//direct_flight_row
+.direct_flight_row{display: flex; flex-wrap: wrap; padding: 20px 0 0;  align-items: center;
+
+  .search_flight{ width: 250px; position: relative; margin-right: 20px;z-index: -1 !important;
+    &::before{ font-size: 15px; color: $orange;  position: absolute; left: 5px; top:8px; content:"\f002"; font-family: "Font Awesome 5 Free"; font-weight:900; }
+    input{border-bottom: 1px solid $orange;  width: 100%; font-weight: 500; padding: 5px 10px; padding-left: 30px;}
+  }
+
+  .return_city{margin-right: 20px;
+    label{font-size: 15px; cursor: pointer;}
+    input{margin-right:8px; vertical-align: middle;}
+
+  }
+  
+}
+
+
+
+
+@media(max-width:767px){
+
+  .searchbox_content{
+    
+    .input_box{width: 100%;margin-bottom:15px;
+      &.inputfild,&.traveler,&.hotelfild,&.room_travelers,&.fullrow{width: 100%;}
+      &.inputdate{width: 48%;}
+    }
+  }
+
+  .search_button{width: 100%; padding: 12px;}
+
+  .direct_flight_row{
+     .search_flight {width: 100%;}
+     .return_city{margin: 10px 0 0; 
+       label{font-size: 14px;}
+    }
+  }
+
+  .transfer_data{transform: rotate(90deg); right: 17px; top: 40px;}
+
+}
