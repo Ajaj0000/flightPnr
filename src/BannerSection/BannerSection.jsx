@@ -225,15 +225,7 @@ function BannerSection() {
         setReturnn(getDate);
     };
 
-    const handelDepartureDate = (departureDate) => {
-        dispatch(setDeparture(departureDate))
-        console.log(departureDate, "departure date");
-    };
-
-    const handelArrivalDate = (arrivalDate) => {
-        dispatch(setArrinal(arrivalDate))
-        console.log(arrivalDate, "arrival Date");
-    };
+    
 
     console.log(count?.departureDate, "departure date");
 
