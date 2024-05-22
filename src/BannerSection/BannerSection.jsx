@@ -215,7 +215,7 @@ function BannerSection() {
         setdeparture(getDate)
         if (returnn && new Date(returnn) > new Date(departure)) {
             const datee = new Date(returnn)
-            datee.setDate(datee.getDate() + 3)
+            datee.setDate(datee.getDate() + 2)
             setReturnn(datee.toISOString().split('T')[0])
         }
     };
