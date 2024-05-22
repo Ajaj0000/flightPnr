@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import './BannerSection.css';
 import url from "../Service/trawexairportlist.json";
+import { useDispatch, useSelector } from "react-redux";
+import { addChild, addInfant, ageChild, decrement, increment, selectClass, subChild, subInfant } from "../Store/ReduxSlice";
+import { age } from "./childAge";
 
 function BannerSection() {
+
+
 
     // const url = require("../Service/trawexairportlist.json")
     // const [departureData, setdepartureData] = useState([])
@@ -36,15 +41,6 @@ function BannerSection() {
     const [airPorts, setAirPorts] = useState([]);
     const [searchAirPort, setSearchAirport] = useState([]);
     const [getairPortToInput, setGetAirPortToInput] = useState();
-    const inputRef = useRef(null);
-
-    const [show, setShow] = useState(false);
-    const handelshow = () => {
-        setShow(true);
-    };
-    const handelblur = () => {
-        setShow(false);
-    };
 
     useEffect(() => {
         const flightData = async () => {
@@ -66,7 +62,23 @@ function BannerSection() {
         const result = airPorts.filter((item) => item.City.toLowerCase().includes(getValue) || item.Country.toLowerCase().includes(getValue) || item.AirportName.toLowerCase().includes(getValue) || item.AirportCode.toLowerCase().includes(getValue))
         setSearchAirport(getValue ? result : airPorts);
     };
-    console.log('airports', airPorts, 'searchairport', searchAirPort);
+
+    const [show, setShow] = useState(false);
+    const inputRef = useRef(null);
+    const handelSuggestion = (event) => {
+        if (inputRef.current && !inputRef.current.contains(event.target)) {
+            setShow(false)
+        }
+    };
+    useEffect(() => {
+        document.addEventListener("mousedown", handelSuggestion)
+        return () => {
+            document.removeEventListener("mousedown", handelSuggestion)
+        }
+    });
+    const handelblur = () => {
+        setShow(false);
+    };
 
     // const resultentAirport = (e) => {
     //     const getvalue = e.target.value;
@@ -97,7 +109,7 @@ function BannerSection() {
             }
         };
         FetchAirport();
-        setfindArrivalAirport()
+        // setfindArrivalAirport();
     }, []);
 
     const handelArrivalData = (e) => {
@@ -108,10 +120,96 @@ function BannerSection() {
             itm.AirportName.toLowerCase().includes(getvalue) ||
             itm.AirportCode.toLowerCase().includes(getvalue));
         setfindArrivalAirport(getvalue ? result : arrivalAirPort);
-        // console.log(result);
-        // setShow()
     }
-    // console.log(arrivalAirPort, 'arrival');
+
+
+
+    const suggestionRef = useRef(null)
+    const [sideClickOff, setSideClickOff] = useState(false)
+
+    const handelSuggestionBox = (event) => {
+        if (suggestionRef.current && !suggestionRef.current.contains(event.target)) {
+            setSideClickOff(false)
+        }
+    };
+    const handelSuggestionBlur = () => {
+        setSideClickOff(false)
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handelSuggestionBox)
+        return () => {
+            document.removeEventListener("mousedown", handelSuggestionBox)
+        };
+    }, []);
+
+
+    // travellar
+    const count = useSelector((state) => state.counter.value);
+    const dispatch = useDispatch()
+
+
+    const travelleRef = useRef(null)
+    const [showtraveller, setTraveller] = useState(false)
+    const handelShowTraveller = (event) => {
+        if (travelleRef.current && !travelleRef.current.contains(event.target)) {
+            setTraveller(false)
+        }
+    }
+    console.log(showtraveller ,"showtraveller");
+    useEffect(() => {
+        document.addEventListener("mousedown", handelShowTraveller)
+        return () => {
+            document.removeEventListener("mousedown", handelShowTraveller)
+        }
+    })
+    // adult
+    const handelDecrement = () => {
+        dispatch(decrement())
+    }
+    const handelIncreament = () => {
+        dispatch(increment())
+    }
+
+    // child
+    const handelChildIncrease = () => {
+        dispatch(addChild())
+    }
+    const handelSubChild = () => {
+        dispatch(subChild())
+    }
+
+    // infant
+    const handeaddfant = () => {
+        dispatch(addInfant())
+    }
+    const handelsubInfant = () => {
+        dispatch(subInfant())
+    }
+
+    console.log(count);
+
+
+    // child age store
+
+    const handelSelect = (data, index) => {
+        dispatch(ageChild({ data, index }));
+        
+        console.log(data, 'data', index, 'index');
+    }
+
+    // select class
+
+    const handelClassTraveller=(classs)=>{
+        dispatch(selectClass(classs))
+        console.log(classs , "classs");
+    }
+
+
+
+
+
+
 
     return (
         <>
@@ -148,23 +246,45 @@ function BannerSection() {
                             </div>
 
                             <div className="searchbox_content">
-                                <div className="input_box inputfild">
-                                    <input type="text" placeholder="Enter Departure Name" onChange={handleDepartureInput} value={getairPortToInput} onFocus={handelshow} onMouseDown={handelblur}/>{/* onChange={GetAirPort} value={depDrtureSearchResult}}*/}
+                                <div className="input_box inputfild" ref={inputRef}>
+                                    <input type="text" placeholder="Enter Departure Name" onChange={handleDepartureInput} value={getairPortToInput} onFocus={() => { setShow(true) }} />{/* onChange={GetAirPort} value={depDrtureSearchResult}}*/}
                                     <div className="transfer_data"><i className="fa-solid fa-right-left"></i></div>
 
                                     {
-                                        show && (
-                                            <div className="list" ref={inputRef} style={{}}>
+                                        searchAirPort.length > 0 ?
+                                            show && (
+                                                <div className="list" >
+                                                    {
+                                                        searchAirPort && searchAirPort.map((itm) => {
+                                                            return (
+                                                                <>
+                                                                    <li className="lii" onClick={() => { setGetAirPortToInput(`${itm.City} | ${itm.AirportName} | ${itm.Country}`); handelblur() }}>
+                                                                        <p>{itm.City}</p>
+                                                                        <span>{itm.AirportCode}</span>
+                                                                        <h4>{itm.AirportName}</h4>
+                                                                    </li>
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            ) :
+                                            <p>AirPort Not Available</p>
+                                    }
+                                </div>
+
+
+                                <div className="input_box inputfild" ref={suggestionRef}>
+                                    <input type="text" placeholder="Enter Arrival" onChange={handelArrivalData} value={inputArrival} onFocus={() => { setSideClickOff(true) }} id="arival" />
+                                    {
+
+                                        sideClickOff && (
+                                            <div className="list">
                                                 {
-                                                    searchAirPort &&
-                                                    searchAirPort.map((itm) => {
+                                                    findArrvialAirport && findArrvialAirport.map((itm) => {
                                                         return (
                                                             <>
-                                                                <li className="lii" onClick={() => { setGetAirPortToInput(`${itm.City} | ${itm.AirportName} | ${itm.Country}`); handelblur() }}>
-                                                                    <p>{itm.City}</p>
-                                                                    <span>{itm.AirportCode}</span>
-                                                                    <h4>{itm.AirportName}</h4>
-                                                                </li>
+                                                                <li className="lii" onClick={() => { setInputArrival(itm.City); handelSuggestionBlur() }}>{itm.City}</li>
                                                             </>
                                                         )
                                                     })
@@ -172,35 +292,7 @@ function BannerSection() {
                                             </div>
                                         )
                                     }
-                                    {/* {depSearch &&
-                                        depSearch.map((itm) => {
-                                            return (
-                                                <>
-                                                    <li onClick={setDepartureSearchResult(itm.AirportName)}>{itm.AirportName}</li>
-                                                </>
-                                            )
-                                        })
-
-
-                                    } */}
                                 </div>
-
-
-                                <div className="input_box inputfild">
-                                    <input type="text" placeholder="Enter Arrival" onChange={handelArrivalData} value={inputArrival} />
-                                    {<div className="list">
-                                        {
-                                            findArrvialAirport && findArrvialAirport.map((itm) => {
-                                                return (
-                                                    <>
-                                                        <li className="lii" onClick={() => { setInputArrival(itm.City) }}>{itm.City}</li>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </div>}
-                                </div>
-
                                 <div className="input_box inputdate">
                                     <input type="text" placeholder="date" />
                                 </div>
@@ -209,9 +301,138 @@ function BannerSection() {
                                     <input type="text" placeholder="date" />
                                 </div>
 
-                                <div className="input_box traveler">
-                                    <small>Traveler</small>
+
+
+                                {/* traveler */}
+
+
+
+
+                                <div className="input-group-row in-roost" id="totalflighttravelers" ref={travelleRef} onClick={() => { setTraveller(true) }}>
+                                    <label>Passengers</label>
+                                    <span className="travel-economy">{count?.adults + count?.child + count?.infant} Traveler</span>
+
+                                    {
+                                        showtraveller && (
+                                            <div className="popuppaxdetails">
+                                                <div className="mainpopupselectroom">
+                                                    <div>
+                                                        <div className="maindivroomsingle">
+                                                            <h4 className="roomnotext"><span>Travelers &amp; className</span><span className="closeroom"></span></h4>
+                                                            <div className="roomdata">
+                                                                <div className="flexdiv  adulttotal" data-min="1" data-max="6">
+                                                                    <label>Adult (12+ yrs)
+
+                                                                    </label>
+                                                                    <div className="counter">
+                                                                        <div className="minussign" onClick={handelDecrement}>-</div>
+                                                                        <label>{count?.adults}</label>
+                                                                        <div className="plussign" onClick={handelIncreament}>+</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flexdiv  childrentotal" data-min="0" data-max="3">
+                                                                    <label>Children (2-12 yrs)</label>
+                                                                    <div className="counter">
+                                                                        <div className="minussign" onClick={handelSubChild}>-</div>
+                                                                        <label>{count?.child}</label>
+                                                                        <div className="plussign" onClick={handelChildIncrease}>+</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                {
+                                                                    Array.from(Array(count?.child)).map((itm, index) => {
+                                                                        return (
+                                                                            <>
+                                                                                <div className="flexdiv flex-col">
+                                                                                    <div className="childage" id="childagediv1" style={{ display: "block" }}>
+                                                                                        <label>Child {index + 1} age</label>
+                                                                                        <div className="counter">
+                                                                                            <select id="childage1" onChange={(data)=>{handelSelect(data.target.value , index)}}>
+                                                                                                {
+                                                                                                    age.map((itm, index) => {
+                                                                                                        return (
+                                                                                                            <>
+                                                                                                                <option value={itm.age} >{itm.age}</option>
+                                                                                                            </>
+                                                                                                        )
+                                                                                                    })
+                                                                                                }
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </>
+                                                                        )
+                                                                    })
+                                                                }
+
+                                                                {/* {
+                                                            child.map((itm , Index) => {
+                                                                return (
+                                                                    <>
+                                                                        <div className="flexdiv flex-col">
+                                                                            <div className="childage" id="childagediv1" style={{ display: "block" }}>
+                                                                                <label>{itm.name}</label>
+                                                                                <div className="counter">
+                                                                                    <select id="childage1">
+                                                                                        {
+                                                                                            age.map((itm) => {
+                                                                                                return (
+                                                                                                    <>
+                                                                                                        <option value={itm.age}>{itm.age}</option>
+                                                                                                    </>
+                                                                                                )
+                                                                                            })
+                                                                                        }
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                )
+                                                            })
+                                                        } */}
+
+
+                                                                <div className="flexdiv infanttotal" data-min="0" data-max="3">
+                                                                    <label>Infant (0-2 yrs)</label>
+                                                                    <div className="counter">
+                                                                        <div className="minussign" onClick={handelsubInfant}>-</div>
+                                                                        <label>{count?.infant}</label>
+                                                                        <div className="plussign" onClick={handeaddfant}>+</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flexdiv bg">
+                                                                    <label>Class</label>
+                                                                    <div className="counter">
+                                                                        <select id="drpflightclass" className="flightclass" name="cabin" onChange={(e)=>{handelClassTraveller(e.target.value)}}>
+                                                                            <option value="Economy">Economy</option>
+                                                                            <option value="Premium Economy">Premium Economy</option>
+                                                                            <option value="Business">Business</option>
+                                                                            <option value="First">First</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="flexdiv">
+                                                                    <div className="counter" style={{ width: "100%" }}>{/***style="width: 100%;" */}
+
+                                                                        <button type="button" className="btnok" onClick={() => { setTraveller(false) }}>Ok</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
                                 </div>
+
+
+                                {/* traveller end */}
+
 
                                 <button className="search_button"> search flights </button>
 
