@@ -215,15 +215,18 @@ function BannerSection() {
         setdeparture(getDate)
         if (returnn && new Date(returnn) > new Date(departure)) {
             const datee = new Date(returnn)
-            datee.setDate(datee.getDate() + 2)
+            datee.setDate(datee.getDate() + 3)
             setReturnn(datee.toISOString().split('T')[0])
         }
     };
     const handelReturn = (e) => {
         const getDate = e.target.value
-        dispatch(setArrinal(getDate));
+       
         setReturnn(getDate);
+        
     };
+    dispatch(setArrinal(returnn));
+    console.log(count?.arrivalDate ,"arrivalDate");
 
     
 
