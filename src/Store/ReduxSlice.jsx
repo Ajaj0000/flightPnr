@@ -7,6 +7,8 @@ const initialState = {
         chilgAge: [],
         infant: 0,
         classs: "Economy",
+        departureDate: '',
+        arrivalDate: '',
     }
 };
 
@@ -62,8 +64,14 @@ export const counterSlice = createSlice({
                 state.value.infant -= 1
             }
         },
-        selectClass: (state , actions) => {
+        selectClass: (state, actions) => {
             state.value.classs = actions.payload
+        },
+        setDeparture: (state, actions) => {
+           state.value.departureDate = actions.payload
+        },
+        setArrinal: (state, actions) => {
+            state.value.arrivalDate = actions.payload
         }
     }
 })
@@ -75,6 +83,8 @@ export const { increment,
     addInfant,
     subInfant,
     ageChild,
-    selectClass
+    selectClass,
+    setArrinal,
+    setDeparture
 } = counterSlice.actions
 export default counterSlice.reducer

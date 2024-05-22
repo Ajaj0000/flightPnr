@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import './BannerSection.css';
 import url from "../Service/trawexairportlist.json";
 import { useDispatch, useSelector } from "react-redux";
-import { addChild, addInfant, ageChild, decrement, increment, selectClass, subChild, subInfant } from "../Store/ReduxSlice";
+import { addChild, addInfant, ageChild, decrement, increment, selectClass, setArrinal, setDeparture, subChild, subInfant } from "../Store/ReduxSlice";
 import { age } from "./childAge";
 
 function BannerSection() {
@@ -156,7 +156,7 @@ function BannerSection() {
             setTraveller(false)
         }
     }
-    console.log(showtraveller ,"showtraveller");
+    console.log(showtraveller, "showtraveller");
     useEffect(() => {
         document.addEventListener("mousedown", handelShowTraveller)
         return () => {
@@ -194,18 +194,48 @@ function BannerSection() {
 
     const handelSelect = (data, index) => {
         dispatch(ageChild({ data, index }));
-        
+
         console.log(data, 'data', index, 'index');
     }
 
     // select class
 
-    const handelClassTraveller=(classs)=>{
+    const handelClassTraveller = (classs) => {
         dispatch(selectClass(classs))
-        console.log(classs , "classs");
-    }
+        console.log(classs, "classs");
+    };
 
+    // date of arrial and departure 
+    const [departure, setdeparture] = useState('');
+    const [returnn, setReturnn] = useState('');
 
+    const handelDeparture = (e) => {
+        const getDate = e.target.value
+        dispatch(setDeparture(getDate))
+        setdeparture(getDate)
+        if (returnn && new Date(returnn) > new Date(departure)) {
+            const datee = new Date(returnn)
+            datee.setDate(datee.getDate() + 2)
+            setReturnn(datee.toISOString().split('T')[0])
+        }
+    };
+    const handelReturn = (e) => {
+        const getDate = e.target.value
+        dispatch(setArrinal(getDate));
+        setReturnn(getDate);
+    };
+
+    const handelDepartureDate = (departureDate) => {
+        dispatch(setDeparture(departureDate))
+        console.log(departureDate, "departure date");
+    };
+
+    const handelArrivalDate = (arrivalDate) => {
+        dispatch(setArrinal(arrivalDate))
+        console.log(arrivalDate, "arrival Date");
+    };
+
+    console.log(count?.departureDate, "departure date");
 
 
 
@@ -258,7 +288,7 @@ function BannerSection() {
                                                         searchAirPort && searchAirPort.map((itm) => {
                                                             return (
                                                                 <>
-                                                                    <li className="lii" onClick={() => { setGetAirPortToInput(`${itm.City} | ${itm.AirportName} | ${itm.Country}`); handelblur() }}>
+                                                                    <li className="lii" onClick={() => { setGetAirPortToInput(`${itm.City}`); handelblur() }}>
                                                                         <p>{itm.City}</p>
                                                                         <span>{itm.AirportCode}</span>
                                                                         <h4>{itm.AirportName}</h4>
@@ -294,17 +324,16 @@ function BannerSection() {
                                     }
                                 </div>
                                 <div className="input_box inputdate">
-                                    <input type="text" placeholder="date" />
+                                    <input type="date" placeholder="date" value={departure} onChange={handelDeparture} min={new Date().toISOString().split('T')[0]} />
                                 </div>
 
                                 <div className="input_box inputdate">
-                                    <input type="text" placeholder="date" />
+                                    <input type="date" placeholder="date" value={returnn} onChange={handelReturn} min={count?.departureDate || new Date().toISOString().split('T')[0]} />
                                 </div>
 
 
 
                                 {/* traveler */}
-
 
 
 
@@ -348,7 +377,7 @@ function BannerSection() {
                                                                                     <div className="childage" id="childagediv1" style={{ display: "block" }}>
                                                                                         <label>Child {index + 1} age</label>
                                                                                         <div className="counter">
-                                                                                            <select id="childage1" onChange={(data)=>{handelSelect(data.target.value , index)}}>
+                                                                                            <select id="childage1" onChange={(data) => { handelSelect(data.target.value, index) }}>
                                                                                                 {
                                                                                                     age.map((itm, index) => {
                                                                                                         return (
@@ -407,7 +436,7 @@ function BannerSection() {
                                                                 <div className="flexdiv bg">
                                                                     <label>Class</label>
                                                                     <div className="counter">
-                                                                        <select id="drpflightclass" className="flightclass" name="cabin" onChange={(e)=>{handelClassTraveller(e.target.value)}}>
+                                                                        <select id="drpflightclass" className="flightclass" name="cabin" onChange={(e) => { handelClassTraveller(e.target.value) }}>
                                                                             <option value="Economy">Economy</option>
                                                                             <option value="Premium Economy">Premium Economy</option>
                                                                             <option value="Business">Business</option>
